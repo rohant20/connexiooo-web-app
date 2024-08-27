@@ -1,10 +1,10 @@
-.navbar {
-    background-color: blue;
+.navbar a{
+    font-family: Arial !important;
+    font-size: xx-large;
 }
-
-
-.navbar-brand{
-    color: #153573;
-    font-family: fantasy;
+img{
+    border-radius: 50%;
 }
-
+body{
+    border:40px solid #0e7ad5 !important;
+}
