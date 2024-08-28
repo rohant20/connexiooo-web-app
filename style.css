@@ -108,3 +108,16 @@ img {
     font-weight: 400;
     margin-bottom: 0;
 }
+
+.popUp{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed !important;
+    height: auto;
+    width: 40vw;
+    left: 29vw;
+    z-index: 100;
+    
+}
