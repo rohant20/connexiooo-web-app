@@ -1,10 +1,98 @@
-.navbar a{
-    font-family: Arial !important;
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* NavBar Styling */
+.navbar a {
     font-size: xx-large;
 }
-img{
+
+img {
     border-radius: 50%;
 }
-body{
-    border:40px solid #0e7ad5 !important;
+
+.searchBar {
+    border: none;
+    font-size: 25px;
+    border-radius: 900px;
+    width: 300px;
+    padding: 5px;
+}
+
+.searchBar:focus {
+    outline: rgb(168, 207, 255);
+}
+
+.searchForm {
+    padding: 0 4% 0 5%;
+}
+
+/* Page Styling */
+.headerContainer {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.header {
+    font-size: 5rem;
+    font-weight: bolder;
+}
+
+/* Contact Card Styling */
+.contactCard {
+    background-color: #fffeff;
+    width: 80vw;
+    border-radius: 0;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid #00000024;
+    opacity: 78%;
+    /* border-top: none;
+    border-bottom: none; */
+}
+
+.contactCard:hover {
+    background-color: #fffeff;
+    width: 80vw;
+    border-radius: 0;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid #00000024;
+    opacity: 100%;
+
+    /* border-top: none;
+    border-bottom: none; */
+}
+
+.contactList {
+    box-shadow: 5px 5px 5px #00000024;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    border-top: 1px solid #00000024;
+    padding: 0;
+}
+
+.infoSubtitle {
+    border-top: 1px solid #00000024;
+    opacity: 65%;
+    font-style: italic;
+}
+
+.contactName {
+    font-weight: 460;
+    margin-bottom: 0;
+}
+
+.contactInfo {
+    padding-top: 2%;
+    font-weight: 400;
+    margin-bottom: 0;
 }
