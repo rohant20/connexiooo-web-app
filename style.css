@@ -17,22 +17,6 @@ img {
     border-radius: 50%;
 }
 
-.searchBar {
-    border: none;
-    font-size: 25px;
-    border-radius: 900px;
-    width: 300px;
-    padding: 5px;
-}
-
-.searchBar:focus {
-    outline: rgb(168, 207, 255);
-}
-
-.searchForm {
-    padding: 0 4% 0 5%;
-}
-
 /* Page Styling */
 .headerContainer {
     text-align: center;
@@ -44,13 +28,41 @@ img {
     font-weight: bolder;
 }
 
+.searchBar {
+    font-size: 20px;
+    border-radius: 900px;
+    width: 300px;
+    padding: 5px;
+}
+
+.searchBar:focus {
+    outline: rgb(168, 207, 255);
+}
+
+.searchForm {
+    margin-right: 25%;
+    margin-left: 25%;
+
+    .btn-success {
+        margin: 0 0 0 1%;
+        width: 20vw;
+    }
+}
+
+.searchBox {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    border-left: 1px solid #00000024;
+}
+
+
 /* Contact Card Styling */
 .contactCard {
     background-color: #fffeff;
     width: 80vw;
     border-radius: 0;
-    border-top: none;
-    border-bottom: none;
+    /* border-top: none; */
+    /* border-bottom: none; */
     border-left: 1px solid #00000024;
     opacity: 78%;
     /* border-top: none;
@@ -61,8 +73,8 @@ img {
     background-color: #fffeff;
     width: 80vw;
     border-radius: 0;
-    border-top: none;
-    border-bottom: none;
+    /* border-top: none;
+    border-bottom: none; */
     border-left: 1px solid #00000024;
     opacity: 100%;
 
