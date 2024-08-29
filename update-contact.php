@@ -1,56 +1,53 @@
 <?php
-	// Connect to database
-	$host = 'localhost';
-	$dbname = 'DB_NAME';
-	$username = 'DB_USER';
-	$password = 'DB_PASS';
+// Connect to database
+    define('DB_HOST', "localhost");
+    define('DB_USER', "TheBeast");
+    define('DB_PASS', "WeLoveCOP4331");
+    define('DB_NAME', "COP4331");
 
-	try {
-    		$pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	} catch (PDOException $e) {
-    		die("Failed to connect to database");
-	}
+    // Incoming JSON data from webpage
+    $inData = getRequestInfo();
 
-	// Check for POST request
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    		// Get the input data
-    		$id = isset($_POST['id']) ? $_POST['id'] : null;
-    		$first_name = isset($_POST['first_name']) ? $_POST['first_name'] : null;
-    		$last_name = isset($_POST['last_name']) ? $_POST['last_name'] : null;
-    		$phone = isset($_POST['phone']) ? $_POST['phone'] : null;
-    		$email = isset($_POST['email']) ? $_POST['email'] : null;
+    $name = $inData["name"];
+    $phone =  $inData["phone"];
+    $email = $inData["email"];
+    $id = $inData["id"];
 
-    // Ensures that all contact info is provided in the request
-    if (!$id || !$first_name || !$last_name || !$phone) {
-        echo json_encode(['status' => 'error', 'message' => 'Missing required field(s)']);
-        exit;
-    }
 
-    // Prepare update query
-    $sql = "UPDATE users SET first_name = :first_name, last_name = :last_name, phone = :phone, email = :email WHERE id = :id";
-    $stmt = $pdo->prepare($sql);
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-    // Execute query
-    try {
-        $stmt->execute([
-            ':first_name' => $first_name,
-            ':last_name' => $last_name,
-            ':phone' => $phone,
-            ':email' => $email,
-            ':id' => $id,
-        ]);
 
-        // Check if update was successful
-        if ($stmt->rowCount()) {
-            echo json_encode(['status' => 'success', 'message' => 'User updated successfully']);
-        } else {
-            echo json_encode(['status' => 'error', 'message' => 'Failed to update user']);
-        }
-    } catch (PDOException $e) {
-        	echo json_encode(['status' => 'error', 'message' => 'Database error']);
-    }
+    if($conn->connect_error){
+        die('Connection Failed ' . $conn->connect_error);
     } else {
-    		echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
+        echo $name . "<br>";
+        echo $phone. "<br>";
+        echo $email. "<br>";
+        echo $id. "<br>";
+
+        $stmt = $conn->prepare("UPDATE Contacts SET Name = ?, Phone = ?, Email = ? WHERE ID = ?");
+        $stmt->bind_param("sssi", $name, $phone, $email, $id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        returnWithError("");
+    }
+
+    function getRequestInfo(){
+        return json_decode(file_get_contents('php://input'), true);
+    }
+
+    function sendResultInfoAsJson($obj){
+        header('Content-type: application/json');
+        echo $obj;
+    }
+
+    function returnWithError( $err )
+{
+$retValue = '{"error":"' . $err . '"}';
+sendResultInfoAsJson( $retValue );
 }
+
+
+    echo 'CONNECTED!';
 ?>
