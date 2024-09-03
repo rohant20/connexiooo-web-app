@@ -1,0 +1,129 @@
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* NavBar Styling */
+.navbar a {
+    font-size: xx-large;
+}
+
+img {
+    border-radius: 50%;
+}
+
+/* Page Styling */
+.headerContainer {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.header {
+    font-size: 5rem;
+    font-weight: bolder;
+}
+
+.searchBar {
+    font-size: 20px;
+    border-radius: 900px;
+    width: 300px;
+    padding: 5px;
+}
+
+.searchBar:focus {
+    outline: rgb(168, 207, 255);
+}
+
+.searchForm {
+    margin-right: 25%;
+    margin-left: 25%;
+
+    .btn-success {
+        margin: 0 0 0 1%;
+        width: 20vw;
+    }
+}
+
+.searchBox {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    border-left: 1px solid #00000024;
+}
+
+
+/* Contact Card Styling */
+.contactCard {
+    background-color: #fffeff;
+    width: 80vw;
+    border-radius: 0;
+    /* border-top: none; */
+    /* border-bottom: none; */
+    border-left: 1px solid #00000024;
+    opacity: 78%;
+    /* border-top: none;
+    border-bottom: none; */
+}
+
+.contactCard:hover {
+    background-color: #fffeff;
+    width: 80vw;
+    border-radius: 0;
+    /* border-top: none;
+    border-bottom: none; */
+    border-left: 1px solid #00000024;
+    opacity: 100%;
+
+    /* border-top: none;
+    border-bottom: none; */
+}
+
+.contactList {
+    box-shadow: 5px 5px 5px #00000024;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    border-top: 1px solid #00000024;
+    padding: 0;
+}
+
+.infoSubtitle {
+    border-top: 1px solid #00000024;
+    opacity: 65%;
+    font-style: italic;
+}
+
+.contactName {
+    font-weight: 460;
+    margin-bottom: 0;
+}
+
+.contactInfo {
+    padding-top: 2%;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.popUp{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed !important;
+    height: auto;
+    width: 40vw;
+    left: 29vw;
+    z-index: 100;
+    
+}
+
+.card-header{
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+}
