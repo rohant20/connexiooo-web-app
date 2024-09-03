@@ -1,10 +1,11 @@
-const addBtm = document.getElementById("addBtm");
+/*const addBtm = document.getElementById("addBtm");
 
 const editBtm = document.getElementById("editBtm");
 
 const popUpElm = (headerText) =>
                       `<div class="card popUp">
                         <div class="card-header">
+                        <button type="button" class="btn-close" aria-label="Close" id="remove"></button>
                         ${headerText}
                         </div>
                         <ul class="list-group list-group-flush">
@@ -41,16 +42,19 @@ const popUpElm = (headerText) =>
         
 
 const popupFunc = (e,action) => {
-    e.preventDefault();
-    console.log(popUpElm);
-    const headerText = action === 'add' ? 'Add Contact' : 'Edit Contact';
-    document.getElementById("pop").innerHTML = popUpElm(headerText);
+  e.preventDefault();
+  console.log(popUpElm);
+  const headerText = action === 'add' ? 'Add Contact' : 'Edit Contact';
+  document.getElementById("pop").innerHTML = popUpElm(headerText);
+
+  let btnRemove = document.querySelector('#remove');
+  btnRemove.addEventListener("click", (e) => {
+    document.removeEventListener("click");
+  });
+
+
 };
 
 
 addBtm.addEventListener("click", (e) => popupFunc(e,'add'));
-editBtm.addEventListener("click", (e) => popupFunc(e,'edit'));
-
-
-
-
+editBtm.addEventListener("click", (e) => popupFunc(e,'edit'));*/

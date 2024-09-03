@@ -33,6 +33,7 @@ img {
     border-radius: 900px;
     width: 300px;
     padding: 5px;
+    
 }
 
 .searchBar:focus {
@@ -50,11 +51,14 @@ img {
 }
 
 .searchBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     padding-top: 5vh;
     padding-bottom: 5vh;
     border-left: 1px solid #00000024;
+    
 }
-
 
 /* Contact Card Styling */
 .contactCard {
@@ -126,4 +130,9 @@ img {
     margin: auto;
     text-align: center;
     padding: 10px;
+}
+
+.btn-close{
+    display: block;
+
 }
