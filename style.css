@@ -42,6 +42,12 @@ img {
 .searchForm {
     margin-right: 25%;
     margin-left: 25%;
+    text-align: center;
+
+    #searchBtn,
+    #addBtn {
+        margin-top: 5%;
+    }
 
     .btn-success {
         margin: 0 0 0 1%;
@@ -109,7 +115,7 @@ img {
     margin-bottom: 0;
 }
 
-.popUp{
+.popUp {
     display: block;
     align-items: center;
     justify-content: center;
@@ -118,11 +124,12 @@ img {
     height: auto;
     width: 40vw;
     left: 29vw;
-    z-index: 100;
-    
+    top: 20vh;
+    z-index: 1;
+
 }
 
-.card-header{
+.card-header {
     margin: auto;
     text-align: center;
     padding: 10px;
