@@ -2,9 +2,10 @@ const addBtm = document.getElementById("addBtm");
 
 const editBtm = document.getElementById("editBtm");
 
-const popUpElm = `<div class="card popUp">
+const popUpElm = (headerText) =>
+                      `<div class="card popUp">
                         <div class="card-header">
-                          Featured
+                        ${headerText}
                         </div>
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">
@@ -33,18 +34,22 @@ const popUpElm = `<div class="card popUp">
                           </li>
                         </ul>
                       </div>`;
+  
+
+
 
         
 
-const popupFunc = (e) => {
+const popupFunc = (e,action) => {
     e.preventDefault();
     console.log(popUpElm);
-    document.getElementById("testingDiv").innerHTML = popUpElm;
+    const headerText = action === 'add' ? 'Add Contact' : 'Edit Contact';
+    document.getElementById("pop").innerHTML = popUpElm(headerText);
 };
 
 
-addBtm.addEventListener("click", popupFunc);
-editBtm.addEventListener("click", popupFunc);
+addBtm.addEventListener("click", (e) => popupFunc(e,'add'));
+editBtm.addEventListener("click", (e) => popupFunc(e,'edit'));
 
 
 

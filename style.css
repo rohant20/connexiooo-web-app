@@ -121,3 +121,9 @@ img {
     z-index: 100;
     
 }
+
+.card-header{
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+}
