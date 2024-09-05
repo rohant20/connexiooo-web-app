@@ -136,3 +136,15 @@ img {
     display: block;
 
 }
+
+/* modal title css */
+.modal-title{
+    text-align: center;
+    width: 600px;
+}
+
+#deletMod .modal-footer{
+    justify-content: center;
+    
+}
+
