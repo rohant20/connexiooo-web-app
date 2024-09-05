@@ -24,12 +24,25 @@
         echo $lastName. "<br>";
         echo $login. "<br>";
         echo $password. "<br>";
-        $stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
-        $stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
-        $stmt->execute();
-        $stmt->close();
-        $conn->close();
-        returnWithError("");
+
+        $stmt = $conn->prepare("SELECT ID FROM Users WHERE Login=?");
+		$stmt->bind_param("s", $login);
+		$stmt->execute();
+		$result = $stmt->get_result();
+
+        if( $row = $result->fetch_assoc()  )
+		{
+            returnWithError("Username already exsists");
+		}
+		else
+		{
+            $stmt2 = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
+            $stmt2->bind_param("ssss", $firstName, $lastName, $login, $password);
+            $stmt2->execute();
+            $stmt2->close();
+            $conn->close();
+            returnWithError("");
+        }
     }
 
 
