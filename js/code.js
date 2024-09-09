@@ -1,7 +1,10 @@
 //Constants declarations for Home Page
-let addBtn = document.getElementById("addBtn");
-let editBtn = document.getElementById("editBtn");
-let popUpContainer = document.getElementById("pop");
+const addBtm = document.getElementById("addBtm");
+const modTitle = document.getElementById('modal-title');
+const editBtm = document.getElementById("editBtm");
+
+const urlBase = '';
+const extension = 'php';
 
 
 let userId = 0;
@@ -84,89 +87,42 @@ class contactInfo {
     }
 }
 
-//HTML Componenet Templates
-const contactCard = (name, phone, email) => `<div class="card contactCard">
-              <div class="card-body">
-                  <div class="contianer">
-                      <div class="row">
-                          <!-- Contact Card Info -->
-                          <div class="col-md-10">
-                              <div class="row">
-                                  <div class="col-md-5">
-                                      <h3 class="contactName">${name}</h3>
-                                      <h6 class="infoSubtitle">Contact Name</h6>
-  
-                                  </div>
-                                  <div class="col-md-3">
-                                      <h5 class="contactInfo">${phone}</h5>
-                                      <h6 class="infoSubtitle">Phone Number</h6>
-                                  </div>
-                                  <div class="col-md-4">
-                                      <h5 class="contactInfo">${email}</h5>
-                                      <h6 class="infoSubtitle">Email Address</h6>
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- Contact Card Edit/Delete BTNS -->
-                          <div class="col-md-2">
-                              <button type="button" class="btn btn-info " id="editBtn">Edit</button>
-                              <button type="button" class="btn btn-danger">Delete</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>`;
-
-
-const popUpElm = (headerText) =>
-    ` <div class="card popUp">
-              <div class="card-header container">
-                  <div class="row">
-                      <div class="col-10">
-                          <h4>${headerText}</h4>
-                      </div>
-                      <div class="col-2">
-                              <img id="closePop" src="images/cross.png" onclick="closePop()" alt="">
-                      </div>
-                  </div>
-              </div>
-              <form>
-                  <ul class="list-group list-group-flush">
-                      <li class="list-group-item">
-                          <div class="form-group">
-                              <label for="nameIn">Full Name</label>
-                              <input type="Name" class="form-control" id="nameIn" placeholder="Richard Leinecker">
-                          </div>
-                      </li>
-                      <li class="list-group-item">
-                          <div class="form-group">
-                              <label for="emailIn">Email</label>
-                              <input type="Email" class="form-control" id="emailIn" placeholder="name@example.com">
-                          </div>
-                      </li>
-                      <li class="list-group-item">
-                          <div class="form-group">
-                              <label for="numberIn">PhoneNumber</label>
-                              <input type="phoneNumber" class="form-control" id="phoneIn" placeholder="123-456-7890">
-                          </div>
-                      </li>
-                  </ul>
-                  <button id="popBtn" class="btn btn-primary" type="submit">${headerText}</button>
-              </form>
-          </div>`;
-
-
-const popupFunc = (e, action) => {
-    e.preventDefault();
-    console.log(e.target);
-    const headerText = action === 'add' ? 'Add Contact' : 'Edit Contact';
-    popUpContainer.innerHTML = popUpElm(headerText);
+function changeAddTitle() {
+    modTitle.textContent = 'Add Contact';
+    console.log('Add button cilcked');
 }
 
-const closePop = () => {
-    popUpContainer.innerHTML = "";
+function changeEditTitle() {
+    modTitle.textContent = 'Edit Contact';
+    console.log('Edit button clicked');
 }
 
+function addContact() {
+    let newName = document.getElementById("nameIn").value;
+    let newEmail = document.getElementById("emailIn").value;
+    let newPhone = document.getElementById("phoneIn").value;
 
-addBtn.addEventListener("click", (e) => popupFunc(e, 'add'));
-editBtn.addEventListener("click", (e) => popupFunc(e, 'edit'));
+    let tmp = { name: newName, phone: newPhone, email: newEmail };
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/add-contact' + extension;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Contact added");
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch (err) {
+        console.log("Error console did not work");
+    }
+}
+
+addBtm.addEventListener("click", changeAddTitle);
+
+editBtm.addEventListener("click", changeEditTitle);

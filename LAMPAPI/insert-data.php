@@ -20,10 +20,10 @@
     if($conn->connect_error){
         die('Connection Failed ' . $conn->connect_error);
     } else {
-        echo $firstName . "<br>";
-        echo $lastName. "<br>";
-        echo $login. "<br>";
-        echo $password. "<br>";
+        // echo $firstName . "<br>";
+        // echo $lastName. "<br>";
+        // echo $login. "<br>";
+        // echo $password. "<br>";
 
         $stmt = $conn->prepare("SELECT ID FROM Users WHERE Login=?");
 		$stmt->bind_param("s", $login);
