@@ -36,12 +36,16 @@
 		}
 		else
 		{
-            $stmt2 = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
+            $stmt2 = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?) ");
             $stmt2->bind_param("ssss", $firstName, $lastName, $login, $password);
             $stmt2->execute();
+
+            $userId = $conn -> insert_id;
+
+            returnWithInfo( $firstName, $lastName, $userId);
+
             $stmt2->close();
             $conn->close();
-            returnWithError("");
         }
     }
 
@@ -54,16 +58,16 @@
         header('Content-type: application/json');
         echo $obj;
     }
-
-    function returnWithError( $err )
+    
+    function returnWithInfo( $firstName, $lastName, $id )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 
-
-    echo 'CONNECTED!';
-
-
-
+    function returnWithError( $err )
+	{
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
 ?>

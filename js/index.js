@@ -93,7 +93,7 @@ function doLogin() {
     xhr.send(jsonPayload);
   }
   catch (err) {
-    document.getElementById("loginResult").innerHTML = err.message;
+    document.getElementById("loginResult").innerHTML = err.error;
   }
 
 }
@@ -103,7 +103,7 @@ function doSignUp() {
   userId = 0;
 
   //	var hash = md5( password );
-  console.log(firstName.value + " " + lastName.value + " " + userName.value + " " + password.value);
+  console.log(firstName.value + "" + lastName.value + "" + userName.value + "" + password.value);
 
   document.getElementById("signUpResult").innerHTML = "";
 
@@ -121,14 +121,17 @@ function doSignUp() {
   let xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
   try {
     xhr.onreadystatechange = function () {
+
       if (this.readyState == 4 && this.status == 200) {
+
         let jsonObject = JSON.parse(xhr.responseText);
         userId = jsonObject.id;
 
         if (userId < 1) {
-          document.getElementById("signUpResult").innerHTML = "Sign Up Failed";
+          document.getElementById("signUpResult").innerHTML = jsonObject.error;
           return;
         }
 
@@ -143,6 +146,7 @@ function doSignUp() {
     xhr.send(jsonPayload);
   }
   catch (err) {
+    console.log(err + "fuck");
     document.getElementById("signUpResult").innerHTML = err.message;
   }
 
