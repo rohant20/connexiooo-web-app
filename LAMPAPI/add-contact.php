@@ -11,6 +11,7 @@
 	$name = $inData["name"];
 	$phone = $inData["phone"];
 	$email = $inData["email"];
+	$userID = $inData["userID"];
 
 	$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -24,8 +25,8 @@
 		$nextID = $row['nextID'];
 
 		// Insert the new contact with the found ID
-		$stmt = $conn->prepare("INSERT INTO Contacts (ID, name, phone, email) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("isss", $nextID, $name, $phone, $email);
+		$stmt = $conn->prepare("INSERT INTO Contacts (ID, name, phone, email, userID) VALUES (?, ?, ?, ?, ?)");
+		$stmt->bind_param("isssi", $nextID, $name, $phone, $email, $userID);
 		$stmt->execute();
     
 		if($stmt->affected_rows > 0){
