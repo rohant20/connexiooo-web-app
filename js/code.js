@@ -3,7 +3,7 @@ const addBtm = document.getElementById("addBtm");
 const modTitle = document.getElementById('modal-title');
 const editBtm = document.getElementById("editBtm");
 
-const urlBase = '';
+const urlBase = 'http://www.connexiooo.xyz/LAMPAPI';
 const extension = 'php';
 
 
@@ -30,10 +30,44 @@ function readCookie() {
     }
 
     if (userId < 0) {
-        window.location.href = "index.html";
+        window.location.href = "login.html";
     }
     else {
         document.getElementById("header").innerHTML = firstName + " " + lastName + "'s Contacts";
+        retriveContacts();
+    }
+}
+
+function retriveContacts() {
+    let user = {
+        userId: userId
+    }
+    //	var tmp = {login:login,password:hash};
+    let jsonPayload = JSON.stringify(user);
+
+    let url = urlBase + '/get-contacts.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+
+                let jsonObject = JSON.parse(xhr.responseText);
+                console.log(jsonObject.length)
+                for (let i = 0; i < jsonObject.length; i++) {
+                    let obj = json[i];
+                    console.log(obj);
+                }
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch (err) {
+        document.getElementById("signUpResult").innerHTML = err.message;
     }
 }
 

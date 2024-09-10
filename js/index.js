@@ -146,7 +146,7 @@ function doSignUp() {
     xhr.send(jsonPayload);
   }
   catch (err) {
-    console.log(err + "fuck");
+    console.log(err);
     document.getElementById("signUpResult").innerHTML = err.message;
   }
 

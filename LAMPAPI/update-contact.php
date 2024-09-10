@@ -43,11 +43,10 @@
     }
 
     function returnWithError( $err )
-{
-$retValue = '{"error":"' . $err . '"}';
-sendResultInfoAsJson( $retValue );
-}
-
+    {
+        $retValue = '{"error":"' . $err . '"}';
+        sendResultInfoAsJson( $retValue );
+    }
 
     echo 'CONNECTED!';
 ?>
