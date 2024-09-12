@@ -19,21 +19,34 @@ img {
 
 /* Page Styling */
 .headerContainer {
-    text-align: center;
-    margin-top: 5%;
+    text-align: right;
 }
 
 #header {
-    font-size: 5rem;
-    font-weight: bolder;
+    font-size: xx-large;
+    color: #fffeff;
+    text-align: right;
 }
 
-.searchBar {
+#searchBar {
     font-size: 20px;
     border-radius: 900px;
     width: 300px;
     padding: 5px;
+}
 
+#logOut {
+    margin-left: none;
+}
+
+.contactSearch {
+    box-shadow: 5px 5px 5px #00000024;
+    width: 77vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    border-top: 1px solid #00000024;
+    padding: 1% 0 1% 0;
 }
 
 .searchBar:focus {
@@ -69,19 +82,19 @@ img {
 /* Contact Card Styling */
 .contactCard {
     background-color: #fffeff;
-    width: 80vw;
+    width: 77vw;
     border-radius: 0;
     /* border-top: none; */
     /* border-bottom: none; */
     border-left: 1px solid #00000024;
-    opacity: 78%;
+    opacity: 80%;
     /* border-top: none;
     border-bottom: none; */
 }
 
 .contactCard:hover {
     background-color: #fffeff;
-    width: 80vw;
+    width: 77vw;
     border-radius: 0;
     /* border-top: none;
     border-bottom: none; */
@@ -97,7 +110,17 @@ img {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: 2%;
+    border-top: 1px solid #00000024;
+    padding: 0;
+}
+
+#displayContainer {
+    box-shadow: 5px 5px 5px #00000024;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
     border-top: 1px solid #00000024;
     padding: 0;
 }
@@ -111,6 +134,10 @@ img {
 .contactName {
     font-weight: 460;
     margin-bottom: 0;
+}
+
+.contactBody {
+    width: 77vw
 }
 
 .contactInfo {
@@ -173,4 +200,19 @@ img {
 #deletMod .modal-footer {
     justify-content: center;
 
+}
+
+.listHeaders {
+    font-weight: 460;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    padding: 0;
+    border-right: solid black 1px;
+}
+
+#leftHeader {
+    font-weight: 460;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    padding: 0;
 }
