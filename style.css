@@ -92,7 +92,7 @@ img {
     border-bottom: none; */
 }
 
-.contactList {
+#contactList {
     box-shadow: 5px 5px 5px #00000024;
     width: fit-content;
     margin-left: auto;

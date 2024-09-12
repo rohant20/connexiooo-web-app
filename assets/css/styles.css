@@ -1,35 +1,37 @@
 /*Google fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-body{
-     font-family: 'Poppins', sans-serif;
-     background: #ececec;
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #ececec;
 }
 
 
 /*Login container*/
-.box-area{
+.box-area {
     width: 930px;
 }
 
-.right-box{
+.right-box {
     padding: 40px 30px 40px 40px;
 }
 
 
-::placeholder{
+::placeholder {
     font-size: 16px;
 }
 
 @media only screen and (max-width: 768px) {
-    .box-area{
+    .box-area {
         margin: 0 10px;
     }
-    .left-box{
+
+    .left-box {
         height: 100px;
         overflow: hidden;
     }
-    .right-box{
+
+    .right-box {
         padding: 20px;
     }
 }

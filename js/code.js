@@ -2,11 +2,14 @@
 const addBtm = document.getElementById("addBtm");
 const modTitle = document.getElementById('modal-title');
 const editBtm = document.getElementById("editBtm");
+const createConBtn = document.getElementById("createConBtn");
 const adedBtm = document.getElementById('adedBtm');
+const delBtn = document.getElementById("confirmDel");
 const searchBtm = document.getElementById('searchBtm');
 const formName = document.getElementById('nameIn');
 const formEmail = document.getElementById('emailIn');
 const formPhone = document.getElementById('phoneIn');
+const contactContainer = document.getElementById("contactList");
 
 const urlBase = 'http://www.connexiooo.xyz/LAMPAPI';
 const extension = 'php';
@@ -19,7 +22,9 @@ let lastName = "";
 function readCookie() {
     userId = -1;
     let data = document.cookie;
+    console.log(data);
     let splits = data.split(",");
+    console.log(splits);
     for (var i = 0; i < splits.length; i++) {
         let thisOne = splits[i].trim();
         let tokens = thisOne.split("=");
@@ -38,7 +43,7 @@ function readCookie() {
         window.location.href = "login.html";
     }
     else {
-        document.getElementById("header").innerHTML = firstName + " " + lastName + "'s Contacts";
+        document.getElementById("header").innerText = `${firstName} ${lastName}'s Contacts`;
         retriveContacts();
     }
 }
@@ -61,18 +66,56 @@ function retriveContacts() {
 
             if (this.readyState == 4 && this.status == 200) {
 
-                let jsonObject = JSON.parse(xhr.responseText);
-                console.log(jsonObject.length)
-                for (let i = 0; i < jsonObject.length; i++) {
-                    let obj = jsonObject[i];
-                    console.log(obj);
+                let jsonArr = JSON.parse(xhr.responseText);
+                console.log(jsonArr.length);
+                console.log(jsonArr);
+                if (jsonArr[0].ID > 0) {
+                    for (let i = 0; i < jsonArr.length; i++) {
+                        let obj = jsonArr[i];
+                        contactContainer.insertAdjacentHTML("beforeend",
+                            `<div class="card contactCard">
+                                <div class="card-body">
+                                    <div class="contianer">
+                                        <div class="row">
+                                            <!-- Contact Card Info -->
+                                            <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <h3 class="contactName" id="conName-${obj.ID}">${obj.Name}</h3>
+                                                        <h6 class="infoSubtitle">Contact Name</h6>
+    
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <h5 class="contactPhone" id="conPhone-${obj.ID}">${obj.Phone}</h5>
+                                                        <h6 class="infoSubtitle">Phone Number</h6>
+    
+    
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <h5 class="contactEmail" id="conEmail-${obj.ID}">${obj.Email}</h5>
+                                                        <h6 class="infoSubtitle">Email Address</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#popUp"
+                                                    id="editBtm" onclick="changeEditTitle(${obj.ID})">Edit</button>
+                                                <button type="button" class="btn btn-danger" id="delBtm" data-bs-toggle="modal"
+                                                    data-bs-target="#deletMod" onclick="deletePrep(${obj.ID})">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+                        );
+                    }
                 }
             }
         };
         xhr.send(jsonPayload);
     }
     catch (err) {
-        document.getElementById("signUpResult").innerHTML = err.message;
+        console.log(err);
     }
 }
 
@@ -83,42 +126,77 @@ function retriveContacts() {
 
 
 //BTN handling
-function changeAddTitle() {
-    modTitle.textContent = 'Add Contact';
-    console.log('Add button cilcked');
-    adedBtm.addEventListener("click", addContact);
-
-}
-
-function changeEditTitle() {
-    modTitle.textContent = 'Edit Contact';
-    let contactName = document.getElementById('conName').innerHTML;
-    formName.value = contactName;
-
-    let contactEmail = document.getElementById('conEmail').innerHTML;
-    formEmail.value = contactEmail;
-
-    let contactPhone = document.getElementById('conPhone').innerHTML;
-    formPhone.value = contactPhone;
-
-    console.log('Edit button clicked');
-    adedBtm.addEventListener("click", editContact);
-
-}
-
-
-//API Calls
-function addContact() {
-    document.getElementById("nameIn").innerHTML = "";
-    document.getElementById("emailIn").innerHTML = "";
-    document.getElementById("phoneIn").innerHTML = "";
-
+function editContact(id, e) {
+    e.preventDefault();
     let newName = document.getElementById("nameIn").value;
     let newEmail = document.getElementById("emailIn").value;
     let newPhone = document.getElementById("phoneIn").value;
 
 
-    let tmp = { name: newName, phone: newPhone, email: newEmail, userId: userId };
+    let tmp = { name: newName, phone: newPhone, email: newEmail, id: id };
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/update-contact.' + extension;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                window.location.reload();
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch (err) {
+        console.log("Error console did not work");
+    }
+
+}
+
+
+function changeEditTitle(id) {
+    modTitle.textContent = 'Edit Contact';
+
+    let contactName = document.getElementById(`conName-${id}`).innerHTML;
+    formName.value = contactName;
+
+    let contactEmail = document.getElementById(`conEmail-${id}`).innerHTML;
+    formEmail.value = contactEmail;
+
+    let contactPhone = document.getElementById(`conPhone-${id}`).innerHTML;
+    formPhone.value = contactPhone;
+
+    adedBtm.addEventListener("click", () => editContact(id, event));
+
+}
+
+
+function changeAddTitle() {
+    modTitle.textContent = 'Add Contact';
+
+    document.getElementById("nameIn").innerHTML = "";
+    document.getElementById("emailIn").innerHTML = "";
+    document.getElementById("phoneIn").innerHTML = "";
+
+    formName.value = document.getElementById("nameIn").innerHTML;
+    formEmail.value = document.getElementById("emailIn").innerHTML;
+    formPhone.value = document.getElementById("phoneIn").innerHTML;
+
+    adedBtm.addEventListener("click", addContact);
+
+}
+
+
+function addContact(e) {
+    e.preventDefault();
+    let newName = document.getElementById("nameIn").value;
+    let newEmail = document.getElementById("emailIn").value;
+    let newPhone = document.getElementById("phoneIn").value;
+
+
+    let tmp = { name: newName, phone: newPhone, email: newEmail, userID: userId };
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/add-contact.' + extension;
@@ -129,7 +207,7 @@ function addContact() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log("Contact added");
+                window.location.reload()
             }
         };
         xhr.send(jsonPayload);
@@ -139,20 +217,21 @@ function addContact() {
     }
 }
 
+
+
+
 function searchContact() {
     console.log('search works');
 }
 
-function editContact() {
-    let newName = document.getElementById("nameIn").value;
-    let newEmail = document.getElementById("emailIn").value;
-    let newPhone = document.getElementById("phoneIn").value;
 
+function deleteContact(id, e) {
+    e.preventDefault();
 
-    let tmp = { name: newName, phone: newPhone, email: newEmail, userID: userID };
+    let tmp = { id: id };
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/update-contact' + extension;
+    let url = urlBase + '/delete-contact.' + extension;
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -160,7 +239,7 @@ function editContact() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log("Contact added");
+                window.location.reload();
             }
         };
         xhr.send(jsonPayload);
@@ -168,14 +247,12 @@ function editContact() {
     catch (err) {
         console.log("Error console did not work");
     }
-
 }
 
-function deleteContact() {
-
+function deletePrep(id) {
+    delBtn.addEventListener("click", () => deleteContact(id, event));
 }
 
 
 searchBtm.addEventListener("click", searchContact);
-addBtm.addEventListener("click", changeAddTitle);
-editBtm.addEventListener("click", changeEditTitle);
+createConBtn.addEventListener("click", changeAddTitle);

@@ -20,12 +20,11 @@ define('DB_NAME', "COP4331");
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT ID, Name, Phone, Email FROM Contacts WHERE UserID = ?");
+		$stmt = $conn->prepare("SELECT DISTINCT ID, Name, Phone, Email FROM Contacts WHERE UserID = ? ORDER BY Name ASC");
 		$stmt->bind_param("i", $inData["userId"]);
 		$stmt->execute();
         // Get result set from statement
         $result = $stmt->get_result();
-		echo $result
         // Fetch all the results into an associative array
         $contacts = $result->fetch_all(MYSQLI_ASSOC);       
 
@@ -46,12 +45,12 @@ define('DB_NAME', "COP4331");
 	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
-	}
+	} 
 
 	function sendResultInfoAsJson( $obj )
 	{
 		header('Content-type: application/json');
-		echo $obj;
+		echo json_encode($obj);
 	}
 	
 	function returnWithError( $err )
