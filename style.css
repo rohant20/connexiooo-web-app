@@ -19,20 +19,34 @@ img {
 
 /* Page Styling */
 .headerContainer {
-    text-align: center;
-    margin-top: 5%;
+    text-align: right;
 }
 
-.header {
-    font-size: 5rem;
-    font-weight: bolder;
+#header {
+    font-size: xx-large;
+    color: #fffeff;
+    text-align: right;
 }
 
-.searchBar {
+#searchBar {
     font-size: 20px;
     border-radius: 900px;
     width: 300px;
     padding: 5px;
+}
+
+#logOut {
+    margin-left: none;
+}
+
+.contactSearch {
+    box-shadow: 5px 5px 5px #00000024;
+    width: 77vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    border-top: 1px solid #00000024;
+    padding: 1% 0 1% 0;
 }
 
 .searchBar:focus {
@@ -56,28 +70,31 @@ img {
 }
 
 .searchBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     padding-top: 5vh;
     padding-bottom: 5vh;
     border-left: 1px solid #00000024;
-}
 
+}
 
 /* Contact Card Styling */
 .contactCard {
     background-color: #fffeff;
-    width: 80vw;
+    width: 77vw;
     border-radius: 0;
     /* border-top: none; */
     /* border-bottom: none; */
     border-left: 1px solid #00000024;
-    opacity: 78%;
+    opacity: 80%;
     /* border-top: none;
     border-bottom: none; */
 }
 
 .contactCard:hover {
     background-color: #fffeff;
-    width: 80vw;
+    width: 77vw;
     border-radius: 0;
     /* border-top: none;
     border-bottom: none; */
@@ -88,12 +105,22 @@ img {
     border-bottom: none; */
 }
 
-.contactList {
+#contactList {
     box-shadow: 5px 5px 5px #00000024;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: 2%;
+    border-top: 1px solid #00000024;
+    padding: 0;
+}
+
+#displayContainer {
+    box-shadow: 5px 5px 5px #00000024;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
     border-top: 1px solid #00000024;
     padding: 0;
 }
@@ -109,12 +136,17 @@ img {
     margin-bottom: 0;
 }
 
+.contactBody {
+    width: 77vw
+}
+
 .contactInfo {
     padding-top: 2%;
     font-weight: 400;
     margin-bottom: 0;
 }
 
+/* Pop Up Screen */
 .popUp {
     display: block;
     align-items: center;
@@ -125,7 +157,7 @@ img {
     width: 40vw;
     left: 29vw;
     top: 20vh;
-    z-index: 1;
+    z-index: 10;
 
 }
 
@@ -133,4 +165,54 @@ img {
     margin: auto;
     text-align: center;
     padding: 10px;
+}
+
+#closePop {
+    width: 2.5vw;
+    display: block;
+    margin: auto;
+}
+
+
+#closePop:hover {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 2.55vw;
+}
+
+#popBtn {
+    display: block;
+    margin: 1vh auto 1vh auto;
+}
+
+.btn-close {
+    display: block;
+
+}
+
+/* modal title css */
+.modal-title {
+    text-align: center;
+    width: 600px;
+}
+
+#deletMod .modal-footer {
+    justify-content: center;
+
+}
+
+.listHeaders {
+    font-weight: 460;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    padding: 0;
+    border-right: solid black 1px;
+}
+
+#leftHeader {
+    font-weight: 460;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    padding: 0;
 }
