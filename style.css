@@ -82,46 +82,48 @@ img {
 /* Contact Card Styling */
 .contactCard {
     background-color: #fffeff;
-    width: 77vw;
     border-radius: 0;
     /* border-top: none; */
     /* border-bottom: none; */
     border-left: 1px solid #00000024;
-    opacity: 80%;
+    opacity: 92%;
     /* border-top: none;
     border-bottom: none; */
 }
 
 .contactCard:hover {
     background-color: #fffeff;
-    width: 77vw;
     border-radius: 0;
     /* border-top: none;
     border-bottom: none; */
     border-left: 1px solid #00000024;
     opacity: 100%;
-
     /* border-top: none;
     border-bottom: none; */
 }
 
 #contactList {
-    box-shadow: 5px 5px 5px #00000024;
-    width: fit-content;
+    /* box-shadow: 5px 5px 5px #00000024; */
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
     margin-top: 2%;
     border-top: 1px solid #00000024;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
 }
 
 #displayContainer {
-    box-shadow: 5px 5px 5px #00000024;
+    /* box-shadow: 5px 5px 5px #00000024; */
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    width: 77vw;
     margin-top: 2%;
     border-top: 1px solid #00000024;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
 }
 
@@ -136,9 +138,6 @@ img {
     margin-bottom: 0;
 }
 
-.contactBody {
-    width: 77vw
-}
 
 .contactInfo {
     padding-top: 2%;
@@ -200,6 +199,11 @@ img {
 #deletMod .modal-footer {
     justify-content: center;
 
+}
+
+#delBtm {
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .listHeaders {
