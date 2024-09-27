@@ -57,12 +57,11 @@ function doLogin() {
   firstName = "";
   lastName = "";
 
-  //	var hash = md5( password );
+  var hash = md5(password.value);
   console.log(userName.value + " " + password.value);
   document.getElementById("loginResult").innerHTML = "";
 
-  let tmp = { login: userName.value, password: password.value };
-  //	var tmp = {login:login,password:hash};
+  let tmp = { login: userName.value, password: hash };
   let jsonPayload = JSON.stringify(tmp);
 
   let url = urlBase + '/Login.' + extension;
@@ -102,7 +101,7 @@ function doLogin() {
 function doSignUp() {
   userId = 0;
 
-  //	var hash = md5( password );
+  var hash = md5(password.value);
   console.log(firstName.value + "" + lastName.value + "" + userName.value + "" + password.value);
 
   document.getElementById("signUpResult").innerHTML = "";
@@ -111,9 +110,8 @@ function doSignUp() {
     firstName: firstName.value,
     lastName: lastName.value,
     login: userName.value,
-    password: password.value
+    password: hash
   }
-  //	var tmp = {login:login,password:hash};
   let jsonPayload = JSON.stringify(tmp);
 
   let url = urlBase + '/insert-data.' + extension;
